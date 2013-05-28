@@ -89,6 +89,17 @@ namespace ti
         }
     }
 
+    void GtkTrayItem::SetTitle(std::string& title)
+    {
+        if (active) {
+            if (title.empty()) {
+                gtk_status_icon_set_title(this->item, NULL);
+            } else {
+                gtk_status_icon_set_title(this->item, title.c_str());
+            }
+        }
+    }
+
     void GtkTrayItem::Remove()
     {
         if (active) {

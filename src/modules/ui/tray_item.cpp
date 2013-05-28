@@ -50,6 +50,8 @@ namespace ti
         this->SetMethod("getMenu", &TrayItem::_GetMenu);
         this->SetMethod("setHint", &TrayItem::_SetHint);
         this->SetMethod("getHint", &TrayItem::_GetHint);
+        this->SetMethod("setTitle", &TrayItem::_SetTitle);
+        this->SetMethod("getTitle", &TrayItem::_GetTitle);
         this->SetMethod("remove", &TrayItem::_Remove);
     }
 
@@ -111,6 +113,23 @@ namespace ti
     void TrayItem::_GetHint(const ValueList& args, ValueRef result)
     {
         result->SetString(this->hint);
+    }
+
+    void TrayItem::_SetTitle(const ValueList& args, ValueRef result)
+    {
+        args.VerifyException("setTitle", "s|0");
+        this->title = "";
+        if (args.size() > 0) {
+            title = args.GetString(0);
+        }
+
+        if (!removed)
+            this->SetTitle(title);
+    }
+
+    void TrayItem::_GetTitle(const ValueList& args, ValueRef result)
+    {
+        result->SetString(this->title);
     }
 
     void TrayItem::_Remove(const ValueList& args, ValueRef result)

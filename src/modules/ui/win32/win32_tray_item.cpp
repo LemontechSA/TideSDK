@@ -3,7 +3,7 @@
 *
 * Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 * Copyright (c) 2012 David Pratt
-* 
+*
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -18,7 +18,7 @@
 *
 ***
 * Copyright (c) 2008-2012 Appcelerator Inc.
-* 
+*
 * Licensed under the Apache License, Version 2.0 (the "License");
 * you may not use this file except in compliance with the License.
 * You may obtain a copy of the License at
@@ -68,12 +68,12 @@ namespace ti
 
         trayItems.push_back(this);
     }
-    
+
     Win32TrayItem::~Win32TrayItem()
     {
         this->Remove();
     }
-    
+
     void Win32TrayItem::SetIcon(std::string& iconPath)
     {
         if (!this->trayIconData)
@@ -85,12 +85,12 @@ namespace ti
         this->trayIconData->hIcon = icon;
         Shell_NotifyIcon(NIM_MODIFY, this->trayIconData);
     }
-    
+
     void Win32TrayItem::SetMenu(AutoMenu menu)
     {
         this->menu = menu;
     }
-    
+
     void Win32TrayItem::SetHint(std::string& hint)
     {
         if (this->trayIconData)
@@ -105,7 +105,12 @@ namespace ti
             Shell_NotifyIcon(NIM_MODIFY, this->trayIconData);
         }
     }
-    
+
+    void Win32TrayItem::SetTitle(std::string& title)
+    {
+        // nothing for now
+    }
+
     void Win32TrayItem::Remove()
     {
         if (this->trayIconData)
@@ -133,9 +138,9 @@ namespace ti
         this->oldNativeMenu = win32menu->CreateNative(false);
         POINT pt;
         GetCursorPos(&pt);
-        
-        SetForegroundWindow(this->trayIconData->hWnd);    
-        TrackPopupMenu(this->oldNativeMenu, TPM_BOTTOMALIGN, 
+
+        SetForegroundWindow(this->trayIconData->hWnd);
+        TrackPopupMenu(this->oldNativeMenu, TPM_BOTTOMALIGN,
             pt.x, pt.y, 0, this->trayIconData->hWnd, NULL);
         PostMessage(this->trayIconData->hWnd, WM_NULL, 0, 0);
     }
@@ -153,7 +158,7 @@ namespace ti
             logger->Error("Tray icon single click callback failed: %s", ss->c_str());
         }
     }
-    
+
     void Win32TrayItem::HandleDoubleLeftClick()
     {
         try
@@ -167,7 +172,7 @@ namespace ti
             logger->Error("Tray icon double left click callback failed: %s", ss->c_str());
         }
     }
-    
+
     UINT Win32TrayItem::GetId()
     {
         return this->trayIconData->uID;
@@ -197,7 +202,7 @@ namespace ti
                 }
                 if (item->GetId() == id && button == WM_LBUTTONDOWN)
                 {
-                    SetTimer(hWnd, 100, GetDoubleClickTime(), (TIMERPROC)DoubleClickTimerProc); 
+                    SetTimer(hWnd, 100, GetDoubleClickTime(), (TIMERPROC)DoubleClickTimerProc);
                     handled = true;
                 }
                 else if (item->GetId() == id && button == WM_RBUTTONDOWN)
@@ -220,7 +225,7 @@ namespace ti
             return false;
         }
     }
-    
+
     /*static*/
     LRESULT CALLBACK Win32TrayItem::DoubleClickTimerProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     {

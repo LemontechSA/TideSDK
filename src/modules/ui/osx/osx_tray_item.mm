@@ -95,6 +95,15 @@ namespace ti
         }
     }
 
+    void OSXTrayItem::SetTitle(std::string& title)
+    {
+        if (title.empty()) {
+            [nativeItem setTitle:@""];
+        } else {
+            [nativeItem setTitle:[NSString stringWithUTF8String:title.c_str()]];
+        }
+    }
+
     void OSXTrayItem::Remove()
     {
         [[NSStatusBar systemStatusBar] removeStatusItem:nativeItem];

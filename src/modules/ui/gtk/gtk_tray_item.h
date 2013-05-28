@@ -47,6 +47,7 @@ namespace ti
         void SetIcon(std::string& iconPath);
         void SetMenu(AutoMenu menu);
         void SetHint(std::string& hint);
+        void SetTitle(std::string& title);
         void Remove();
 
         GtkStatusIcon* GetWidget();

@@ -39,13 +39,14 @@
 namespace ti
 {
     class Win32TrayItem: public TrayItem
-    {        
+    {
         public:
         Win32TrayItem(std::string& iconURL, TiMethodRef cbSingleClick);
         virtual ~Win32TrayItem();
         void SetIcon(std::string& iconPath);
         void SetMenu(AutoMenu menu);
         void SetHint(std::string& hint);
+        void SetTitle(std::string& title);
         void Remove();
         void ShowTrayMenu();
         void HandleRightClick();
@@ -53,7 +54,7 @@ namespace ti
         void HandleDoubleLeftClick();
         UINT GetId();
         static bool MessageHandler(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
-        
+
         static LRESULT CALLBACK DoubleClickTimerProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
         private:

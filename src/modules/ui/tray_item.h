@@ -50,14 +50,17 @@ namespace ti
         virtual void SetIcon(std::string& iconPath) = 0;
         virtual void SetMenu(AutoMenu menu) = 0;
         virtual void SetHint(std::string& hint) = 0;
+        virtual void SetTitle(std::string& hint) = 0;
         virtual void Remove() = 0;
 
         void _SetIcon(const ValueList& args, ValueRef result);
         void _SetMenu(const ValueList& args, ValueRef result);
         void _SetHint(const ValueList& args, ValueRef result);
+        void _SetTitle(const ValueList& args, ValueRef result);
         void _GetIcon(const ValueList& args, ValueRef result);
         void _GetMenu(const ValueList& args, ValueRef result);
         void _GetHint(const ValueList& args, ValueRef result);
+        void _GetTitle(const ValueList& args, ValueRef result);
         void _Remove(const ValueList& args, ValueRef result);
 
     protected:
@@ -65,6 +68,7 @@ namespace ti
         std::string iconURL;
         std::string iconPath;
         std::string hint;
+        std::string title;
         bool removed;
     };
 }
