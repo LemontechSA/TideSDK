@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 # Copyright (c) 2012 David Pratt
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -18,7 +18,7 @@
 # limitations under the License.
 
 # Copyright (c) 2008-2012 Appcelerator Inc.
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -51,7 +51,7 @@ class Module(object):
     def __str__(self):
         return self.dir
 
-class BuildConfig(object): 
+class BuildConfig(object):
     def __init__(self, **kwargs):
         self.debug = False
         self.os = None
@@ -119,7 +119,7 @@ class BuildConfig(object):
         if ARGUMENTS.get('lite'):
             self.tidelite = True
             self.env.Append(CPPDEFINES='TIDE_LITE')
-        
+
         self.init_os_arch()
         self.build_targets = []  # targets needed before packaging & distribution can occur
         self.staging_targets = []  # staging the module and sdk directories
@@ -154,7 +154,7 @@ class BuildConfig(object):
             self.env.Append(CPPDEFINES = ('OS_32', 1))
 
         if self.is_osx():
-            sdk_version = '10.7'
+            sdk_version = '10.8'
             xcode_path = os.popen("/usr/bin/xcode-select --print-path").readline().rstrip('\n')
             if(False == os.path.exists(xcode_path)):
                 print 'XCode not found. Make sure you have set your xcode with xcode-select'
@@ -251,7 +251,7 @@ class BuildConfig(object):
 	        if self.tidelite is False:
                     cpppath = [self.tp('webkit-patch', 'include')]
                     libpath = [self.tp('webkit-patch', 'lib')]
-	        else: 
+	        else:
                     cpppath = [self.tp('webkit-lite', 'include')]
                     libpath = [self.tp('webkit-lite', 'lib')]
 

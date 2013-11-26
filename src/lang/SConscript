@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 # Copyright (c) 2012 David Pratt
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -18,7 +18,7 @@
 # limitations under the License.
 
 # Copyright (c) 2008-2012 Appcelerator Inc.
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -50,7 +50,3 @@ def build_module_from_directory(dir):
         duplicate=0)
 
 Export('build_module_from_directory')
-
-if not build.tidelite:
-    for dir in ['python', 'ruby', 'php']:
-        build_module_from_directory(dir)

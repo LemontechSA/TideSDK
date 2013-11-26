@@ -13,3 +13,4 @@ vc80.idb
 thirdparty*
 *.xcodeproj*
 .DS_Store
+.ruby-version

@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2012 Software in the Public Interest Inc (SPI)
 # Copyright (c) 2012 David Pratt
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -18,7 +18,7 @@
 # limitations under the License.
 
 # Copyright (c) 2008-2012 Appcelerator Inc.
-# 
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
@@ -54,6 +54,8 @@ if build.is_win32():
     arch_name = '%s-%s-v%s' % ("win", build.arch, revisions[build.os+'-'+build.arch])
 thirdparty_name = 'thirdparty-%s' % (arch_name)
 
+#TODO: download this files and store in local server
+#http://tidesdk.multipart.net/thirdparty/tide-osx-x86-v2.tgz
 url = 'http://tidesdk.multipart.net/thirdparty/tide-%s.tgz' % (arch_name)
 
 build.third_party = path.join(build.cwd(), thirdparty_name)
@@ -105,9 +107,9 @@ elif build.is_osx():
     libs = ['boost', 'curl', 'openssl', 'poco']
     excludes = ['.a', '.h', '.defs', 'JavaScriptGlue.framework', '.DS_Store']
     targets = []
-    
+
     if build.tidelite:
-        excludes.extend(['WebKit.framework', 'WebCore.framework', 'JavaScriptCore.framework'])    
+        excludes.extend(['WebKit.framework', 'WebCore.framework', 'JavaScriptCore.framework'])
     for framework in Glob(path.join(build.third_party, '*/*.framework')):
         t = build.utils.CopyToDir(framework, rtdir, exclude=excludes)
         targets.append(t)
@@ -115,7 +117,7 @@ elif build.is_osx():
         p = path.join(build.third_party, libdir, 'lib')
         targets.append(build.utils.CopyTree(p, rtdir, exclude=excludes))
         build.mark_build_target(targets)
-    
+
     # PHP dependencies don't aren't distributed with the runtime, only Poco's.
     # for libdir in Glob(path.join(build.third_party, '*/lib')):
 
